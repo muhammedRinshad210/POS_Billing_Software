@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+    
+</head>
+
+
+<body class="bg-light">
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-dark">
+
+        <div class="container">
+
+            <a
+                href="{% url 'admin_dashboard' %}"
+                class="navbar-brand fw-bold"
+            >
+                POS Billing Software
+            </a>
+
+            <span class="text-white">
+                Products
+            </span>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main Content -->
+    <div class="container py-5">
+
+
+        <!-- Header -->
+        <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4"
+        >
+
+            <div>
+
+                <h1 class="fw-bold mb-1">
+                    Products
+                </h1>
+
+                <p class="text-muted mb-0">
+                    Manage products, prices and stock.
+                </p>
+
+            </div>
+
+
+            <a
+                href="{% url 'add_product' %}"
+                class="btn btn-dark"
+            >
+                + Add Product
+            </a>
+
+        </div>
+
+
+        <!-- Products Table -->
+        <div class="card shadow-sm border-0">
+
+            <div class="card-body p-0">
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle mb-0">
+
+                        <thead class="table-dark">
+
+                            <tr>
+
+                                <th>
+                                    Product
+                                </th>
+
+                                <th>
+                                    Price
+                                </th>
+
+                                <th>
+                                    Stock
+                                </th>
+
+                                <th class="text-end">
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for product in products %}
+
+                            <tr>
+
+                                <td class="fw-semibold">
+                                    {{ product.name }}
+                                </td>
+
+                                <td>
+                                    ₹{{ product.price }}
+                                </td>
+
+                                <td>
+
+                                    {% if product.stock > 0 %}
+
+                                    <span class="badge text-bg-success">
+                                        {{ product.stock }}
+                                    </span>
+
+                                    {% else %}
+
+                                    <span class="badge text-bg-danger">
+                                        Out of Stock
+                                    </span>
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <td class="text-end">
+
+                                    <a
+                                        href="{% url 'edit_product' product.id %}"
+                                        class="btn btn-sm btn-outline-primary"
+                                    >
+                                        Edit
+                                    </a>
+
+                                    <a
+                                        href="{% url 'delete_product' product.id %}"
+                                        class="btn btn-sm btn-outline-danger"
+                                    >
+                                        Delete
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+
+                            {% empty %}
+
+                            <tr>
+
+                                <td
+                                    colspan="4"
+                                    class="text-center py-5 text-muted"
+                                >
+
+                                    <h5>
+                                        No products found
+                                    </h5>
+
+                                    <p class="mb-0">
+                                        Add your first product to get started.
+                                    </p>
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Back -->
+        <div class="mt-4">
+
+            <a
+                href="{% url 'admin_dashboard' %}"
+                class="btn btn-outline-secondary"
+            >
+                ← Back to Admin Dashboard
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+    
+</body>
+</html>

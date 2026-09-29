@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-u!crj^y=mzvhfl=y68&(2*+c01b93&cyp34(k6++!g*a8%6qgx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "pos-billing-software-w1ea.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # Application definition
